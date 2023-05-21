@@ -2,11 +2,14 @@
     <div class="app">
 
     <button @click="fetchData">GET</button>
+    <input v-model="url" placeholder="url"> 
+    <!--
     <ul>
         <li v-for="item in data" :key="item.id">
             {{ item }}
         </li>
     </ul>
+    -->
 
     </div>
 </template>
@@ -15,15 +18,17 @@
 export default {
     data() {
         return {
+            url: "",
             data: [],
         }
     },  
 
     methods: {
         fetchData() {
-            fetch("https://jsonplaceholder.typicode.com/todos")
-                .then(response => response.json())
-                .then(data => {this.data = data;})
+            fetch(this.url)
+                .then(r => alert(r))
+                //.then(response => response.json())
+                //.then(data => {this.data = data;})
                 .catch(error => {console.error("Error, ", error);})
         },
     }
